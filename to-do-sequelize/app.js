@@ -82,12 +82,17 @@ const Todo = sequelize.define('todos', {
 
 })
 
-//? Syncronization:
-// Model'i veritabanına uygula:
-//! sync() methodu (modelde değişiklik var ise tekrar uygulanır.) 1 kere uygulanır
-// sequelize.sync() // create table(Model, veritaabına uygulanmışsa çalıştırılır.)
-// sequelize.sync( { froce: true}) // Drop table end create new table (dikkat! data var ise silinir.)
-// sequelize.sync( { alter: true}) // To backup and drop table and create table and from backup
+//* Syncronization:
+//? Model'i veritabanına uygula:
+// sequelize.sync() // CREATE TABLE (ilk uygulama)
+// sequelize.sync({ force: true }) // DROP TABLE & CREATE TABLE (Dikkat! Data var ise silinir.)
+// sequelize.sync({ alter: true }) // TO BACKUP & DROP TABLE & CREATE TABLE & FROM BACKUP 
+//! sync() methodu 1 kere uygulanır ((modelde değişiklik var ise tekrar uygulanır.)
+
+// Connect to DB:
+sequelize.authenticate()
+    .then(() => console.log('* DB Connected * '))
+    .catch(() => console.log('* DB Not Connected * '))
 
 /* ------------------------------------------------------- */
 const errorHandler = (err, req, res, next) => {
