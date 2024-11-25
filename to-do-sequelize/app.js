@@ -82,10 +82,12 @@ const Todo = sequelize.define('todos', {
 
 })
 
-// Syncronization:
+//? Syncronization:
 // Model'i veritabanına uygula:
-sequelize.sync()
-
+//! sync() methodu (modelde değişiklik var ise tekrar uygulanır.) 1 kere uygulanır
+// sequelize.sync() // create table(Model, veritaabına uygulanmışsa çalıştırılır.)
+// sequelize.sync( { froce: true}) // Drop table end create new table (dikkat! data var ise silinir.)
+// sequelize.sync( { alter: true}) // To backup and drop table and create table and from backup
 
 /* ------------------------------------------------------- */
 const errorHandler = (err, req, res, next) => {
