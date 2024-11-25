@@ -21,9 +21,10 @@ app.use(express.json())
 // express-async-errors: catch async-errors and send to errorHandler:
 require('express-async-errors')
 
-app.all('/', (req, res) => {
-    res.send('WELCOME TO TODO API')
-})
+// app.all('/', (req, res) => {
+//     res.send('WELCOME TO TODO API')
+// })
+
 /* ------------------------------------------------------- */
 //* SEQUELIZE
 // npm i sequelize sqlite3
@@ -93,6 +94,24 @@ const Todo = sequelize.define('todos', {
 sequelize.authenticate()
     .then(() => console.log('* DB Connected * '))
     .catch(() => console.log('* DB Not Connected * '))
+
+/* ------------------------------------------------------- */
+// ROUTERS:
+
+const router = express.Router()
+
+//? CRUD -> 
+
+// CREATE TODO:
+router.post('/', (req, res) => {
+
+    console.log(1)
+    console.log(req.body)
+    
+})
+
+
+app.use(router)
 
 /* ------------------------------------------------------- */
 const errorHandler = (err, req, res, next) => {
