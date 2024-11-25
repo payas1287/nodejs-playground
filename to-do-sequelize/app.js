@@ -11,24 +11,33 @@ const PORT = process.env.PORT || 8000;
 
 /* ------------------------------------------------------- */
 // Accept json data and convert to object:
-app.use(express.json())
+app.use(express.json());
 
-app.all('/', (req, res) => {
-    res.send('WELCOME TO TODO API')
-})
+// express-async-errors: catch async-errors and send to errorHandler:
+require('express-async-errors')
+app.all("/", (req, res) => {
+  res.send("WELCOME TO TODO API");
+});
 
-// continue from here...
+// *  SEQUELİZE
+
+const {Sequelize, DataTypes} = require('sequelize')
+
+//? DB Connection Setting:
+
+//const squelize = new Sequelize('sqlite:./db.sqlite3')
+const squelize = new Sequelize('sqlite:' + (process.env.SQLITE || './db.sqlite3') )
 
 const errorHandler = (err, req, res, next) => {
-    const errorStatusCode = res.errorStatusCode ?? 500
-    console.log('errorHandler worked.')
-    res.status(errorStatusCode).send({
-        error: true, // special data
-        message: err.message, // error string message
-        cause: err.cause, // error option cause
-        // stack: err.stack, // error details
-    })
-}
-app.use(errorHandler)
+  const errorStatusCode = res.errorStatusCode ?? 500;
+  console.log("errorHandler worked.");
+  res.status(errorStatusCode).send({
+    error: true, // special data
+    message: err.message, // error string message
+    cause: err.cause, // error option cause
+    // stack: err.stack, // error details
+  });
+};
+app.use(errorHandler);
 /* ------------------------------------------------------- */
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
