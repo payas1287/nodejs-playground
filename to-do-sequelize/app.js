@@ -31,16 +31,16 @@ require('express-async-errors')
 
 const { Sequelize, DataTypes } = require('sequelize')
 
-// DB Connection Settings:
+//! DB Connection Settings:
 // const sequelize = new Sequelize('sqlite:./db.sqlite3')
 // const sequelize = new Sequelize('sqlite:' + process.env.SQLITE)
 const sequelize = new Sequelize('sqlite:' + (process.env.SQLITE || './db.sqlite3'))
 
-// Model:
-// Her model, veritabanında bir tabloya karşılık gelir.
-// sequelize.define('tableName', { tableDetails })
+//! Model:
+//* Her model, veritabanında bir tabloya karşılık gelir.
+//* sequelize.define('tableName', { tableDetails })
 
-// Model isimleri PascalCase:
+//* Model isimleri PascalCase:
 const Todo = sequelize.define('todos', {
 
     // sequelize'da id tanımlamaya gerek yoktur. Otomatik tanımlanır.
@@ -62,6 +62,7 @@ const Todo = sequelize.define('todos', {
 
     // description: {
     //     type: DataTypes.TEXT,
+    //     allowNul: false
     // },
     description: DataTypes.TEXT, // ShortHand 
 
@@ -90,38 +91,38 @@ const Todo = sequelize.define('todos', {
 // sequelize.sync({ alter: true }) // TO BACKUP & DROP TABLE & CREATE TABLE & FROM BACKUP 
 //! sync() methodu 1 kere uygulanır ((modelde değişiklik var ise tekrar uygulanır.)
 
-// Connect to DB:
+//! Connect to DB:
 sequelize.authenticate()
     .then(() => console.log('* DB Connected * '))
     .catch(() => console.log('* DB Not Connected * '))
 
 /* ------------------------------------------------------- */
-// ROUTERS:
+//! ROUTERS:
 
 const router = express.Router()
 
 //? https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
 
-// LIST TODOS:
-// router.get('/', async (req, res) => {
+//! LIST TODOS:
+router.get('/', async (req, res) => {
 
-//     // const data = await Todo.findAll()
-//     // const data = await Todo.findAll({
-//     //     attributes: ['title', 'description', 'priority'], // Select Filelds
-//     //     where: { priority: -1 } // Filters
-//     // })
-//     const data = await Todo.findAndCountAll()
+    // const data = await Todo.findAll()
+    // const data = await Todo.findAll({
+    //     attributes: ['title', 'description', 'priority'], // Select Filelds
+    //     where: { priority: -1 } // Filters
+    // })
+    const data = await Todo.findAndCountAll()
 
-//     res.status(200).send({
-//         error: false,
-//         result: data
-//     })
+    res.status(200).send({
+        error: false,
+        result: data
+    })
 
-// })
+})
 
 //? CRUD -> 
 
-// CREATE TODO:
+//! CREATE TODO:
 router.post('/', async (req, res) => {
     
     // const receivedData = req.body
