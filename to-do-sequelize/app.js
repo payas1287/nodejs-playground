@@ -124,16 +124,16 @@ const router = express.Router()
 // CREATE TODO:
 router.post('/', async (req, res) => {
     
-    const receivedData = req.body
-    console.log(receivedData)
+    // const receivedData = req.body
+    // console.log(receivedData)
 
-    const data = await Todo.create({
-        title: receivedData.title,
-        description: receivedData.description,
-        priority: receivedData.priority,
-        isDone: receivedData.isDone
-    })
-    // const data = await Todo.create(req.body)
+    // const data = await Todo.create({
+    //     title: receivedData.title,
+    //     description: receivedData.description,
+    //     priority: receivedData.priority,
+    //     isDone: receivedData.isDone
+    // })
+     const data = await Todo.create(req.body)
 
     res.status(201).send({
         error: false,
