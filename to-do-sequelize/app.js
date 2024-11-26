@@ -103,37 +103,37 @@ const router = express.Router()
 //? https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
 
 // LIST TODOS:
-router.get('/', async (req, res) => {
+// router.get('/', async (req, res) => {
 
-    // const data = await Todo.findAll()
-    // const data = await Todo.findAll({
-    //     attributes: ['title', 'description', 'priority'], // Select Filelds
-    //     where: { priority: -1 } // Filters
-    // })
-    const data = await Todo.findAndCountAll()
+//     // const data = await Todo.findAll()
+//     // const data = await Todo.findAll({
+//     //     attributes: ['title', 'description', 'priority'], // Select Filelds
+//     //     where: { priority: -1 } // Filters
+//     // })
+//     const data = await Todo.findAndCountAll()
 
-    res.status(200).send({
-        error: false,
-        result: data
-    })
+//     res.status(200).send({
+//         error: false,
+//         result: data
+//     })
 
-})
+// })
 
 //? CRUD -> 
 
 // CREATE TODO:
 router.post('/', async (req, res) => {
     
-    // const receivedData = req.body
-    // console.log(receivedData)
+    const receivedData = req.body
+    console.log(receivedData)
 
-    // const data = await Todo.create({
-    //     title: receivedData.title,
-    //     description: receivedData.description,
-    //     priority: receivedData.priority,
-    //     isDone: receivedData.isDone
-    // })
-    const data = await Todo.create(req.body)
+    const data = await Todo.create({
+        title: receivedData.title,
+        description: receivedData.description,
+        priority: receivedData.priority,
+        isDone: receivedData.isDone
+    })
+    // const data = await Todo.create(req.body)
 
     res.status(201).send({
         error: false,
