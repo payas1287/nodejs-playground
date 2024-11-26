@@ -2,10 +2,10 @@
 /* -------------------------------------------------------
     EXPRESSJS - TODO Project with Sequelize
 ------------------------------------------------------- *
-$ npm init -y
-$ npm i express dotenv / express-async-errors
-$ echo PORT=8000 > .env
-$ npm i sequelize sqlite3
+$ sudo npm init -y
+$ sudo npm i express dotenv / express-async-errors
+$ sudo echo PORT=8000 > .env
+$ sudo npm i sequelize sqlite3
 /* ------------------------------------------------------- */
 
 const express = require("express");
@@ -27,7 +27,7 @@ require('express-async-errors')
 
 /* ------------------------------------------------------- */
 //* SEQUELIZE
-// npm i sequelize sqlite3
+// sudo npm i sequelize sqlite3
 
 const { Sequelize, DataTypes } = require('sequelize')
 
