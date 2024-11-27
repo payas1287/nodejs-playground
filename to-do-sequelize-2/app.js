@@ -17,19 +17,16 @@ const PORT = process.env.PORT || 8000;
 /* ------------------------------------------------------- */
 // Accept JSON data and convert to object (for API):
 app.use(express.json())
-// Accept FORM data and convert to object (for Template):
-// app.use(express.urlencoded({ extended: true }))
 
 // express-async-errors: catch async-errors and send to errorHandler:
 require('express-async-errors')
 
-// app.all('/', (req, res) => {
-//     res.send('WELCOME TO TODO API')
-// })
+/* ------------------------------------------------------- */
+//* Routes:
 
-app.use(require('./app/routes/todo.router'))
+app.use('/todos', require('./app/routes/todo.router'))
 
-
+/* ------------------------------------------------------- */
 const errorHandler = (err, req, res, next) => {
     const errorStatusCode = res.errorStatusCode ?? 500
     console.log('errorHandler worked.')
@@ -41,5 +38,5 @@ const errorHandler = (err, req, res, next) => {
     })
 }
 app.use(errorHandler)
-
+/* ------------------------------------------------------- */
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
