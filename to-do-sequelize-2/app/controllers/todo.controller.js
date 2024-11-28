@@ -5,7 +5,7 @@
 
 //*CONTROLLERS
 
-const Todo = require("../models/todo.model");
+const Todo = require("../models/todo.models");
 
 module.exports = {
   list: async (req, res) => {

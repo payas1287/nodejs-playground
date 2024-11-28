@@ -19,12 +19,12 @@ const Todo = seuelize.define("todos", {
     allowNull: false,
   },
 
-  description: DataTypes.TINYINT,
+  description: DataTypes.TEXT,
 
   priorty: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.TINYINT,
     allowNull: false,
-    defaultValue: false,
+    defaultValue: 0
   },
 
   isDone: {
@@ -34,7 +34,7 @@ const Todo = seuelize.define("todos", {
   },
 });
 
-sequelize.sync({ alter: true });
+sequelize.sync();
 
 sequelize
   .authenticate()
