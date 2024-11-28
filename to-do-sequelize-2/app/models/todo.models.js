@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
   "sqlite:" + (process.env.SQLITE || "./db.sqlite3")
 );
 
-const Todo = seuelize.define("todos", {
+const Todo = sequelize.define("todos", {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
